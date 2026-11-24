@@ -5,7 +5,7 @@ button.disabled=true;button.textContent='正在製作 PDF…';let sheet;
 try{
 if(!pdfLibraries)pdfLibraries=Promise.all([loadPdfScript('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js'),loadPdfScript('https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js')]).catch(err=>{pdfLibraries=null;throw err});
 await pdfLibraries;
-sheet=document.querySelector('article').cloneNode(true);sheet.querySelectorAll('.no-print').forEach(n=>n.remove());sheet.querySelectorAll('details').forEach(n=>n.open=true);
+sheet=document.querySelector('article').cloneNode(true);sheet.querySelectorAll('.no-print,.art').forEach(n=>n.remove());sheet.querySelectorAll('details').forEach(n=>n.open=true);
 sheet.style.cssText='position:absolute;left:-10000px;top:0;width:720px;max-width:none;padding:0;border:0;border-radius:0;background:white;color:#263d40;font-size:16px;line-height:1.65';
 document.body.appendChild(sheet);if(document.fonts)await document.fonts.ready;
 const pdf=new window.jspdf.jsPDF({orientation:'portrait',unit:'mm',format:'a4',compress:true});
